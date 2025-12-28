@@ -1,0 +1,12 @@
+{
+    "company_name": "Western Heights Inc.",
+    "company_email": "info@westernheights.inc",
+    "admin_email": "bdarlingtone@westernheights.inc",
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "smtp_username": "your_email@gmail.com",
+    "smtp_password": "your_app_password",
+    "save_to_file": true,
+    "send_email": true,
+    "website_url": "http://localhost:5000"
+}

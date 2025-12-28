@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Systems Services | Western Heights Inc.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-emerald: #0c5c46;
+            --rich-gold: #d4af37;
+            --warm-yellow: #f8c537;
+            --soft-white: #f8f9fa;
+            --light-gray: #e9ecef;
+            --medium-gray: #6c757d;
+            --dark-gray: #343a40;
+            --gradient-green: linear-gradient(135deg, #0c5c46 0%, #1a7d5e 100%);
+            --gradient-gold: linear-gradient(135deg, #d4af37 0%, #f8c537 100%);
+            --shadow-subtle: 0 4px 6px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            color: var(--dark-gray);
+            line-height: 1.6;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--deep-emerald);
+            line-height: 1.3;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 4px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient-gold);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--soft-white);
+            border: 2px solid var(--rich-gold);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Header */
+        header {
+            background-color: #ffffff;
+            box-shadow: var(--shadow-subtle);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-green);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--soft-white);
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            color: var(--deep-emerald);
+            margin: 0;
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--medium-gray);
+            margin: 0;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: var(--dark-gray);
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--deep-emerald);
+        }
+
+        .nav-links li.active a {
+            color: var(--deep-emerald);
+            font-weight: 600;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--deep-emerald);
+            cursor: pointer;
+        }
+
+        /* Service Hero Section */
+        .service-hero {
+            background: var(--gradient-green), url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-blend-mode: overlay;
+            background-size: cover;
+            background-position: center;
+            color: var(--soft-white);
+            padding: 180px 0 100px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .service-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .service-hero h1 {
+            font-size: 3rem;
+            color: var(--soft-white);
+            margin-bottom: 20px;
+        }
+
+        .service-hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: var(--light-gray);
+        }
+
+        .service-icon-large {
+            font-size: 4rem;
+            color: var(--rich-gold);
+            margin-bottom: 30px;
+        }
+
+        /* Service Content */
+        .service-content {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background: var(--gradient-gold);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .service-overview {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+
+        .service-overview-text {
+            flex: 1;
+        }
+
+        .service-overview-text h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .service-overview-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .placeholder-image {
+            width: 100%;
+            height: 300px;
+            background: var(--gradient-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--soft-white);
+            font-size: 1.5rem;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-subtle);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--soft-white);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* CTA Section */
+        .service-cta {
+            background: var(--gradient-green);
+            padding: 80px 0;
+            text-align: center;
+            color: var(--soft-white);
+            border-radius: 10px;
+        }
+
+        .service-cta h2 {
+            color: var(--soft-white);
+            margin-bottom: 20px;
+        }
+
+        .service-cta p {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+            color: var(--light-gray);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            color: var(--light-gray);
+            padding: 70px 0 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo .logo-text h1 {
+            color: var(--soft-white);
+        }
+
+        .footer-logo .logo-text p {
+            color: var(--medium-gray);
+        }
+
+        .footer-links h4, .footer-help h4 {
+            color: var(--soft-white);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul, .footer-help ul {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a, .footer-help a {
+            color: var(--medium-gray);
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover, .footer-help a:hover {
+            color: var(--rich-gold);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--soft-white);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: var(--rich-gold);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Breadcrumb Navigation */
+        .breadcrumb {
+            padding: 20px 0;
+            background-color: var(--soft-white);
+            margin-top: 70px;
+        }
+
+        .breadcrumb ul {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--medium-gray);
+        }
+
+        .breadcrumb a {
+            color: var(--medium-gray);
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--deep-emerald);
+        }
+
+        .breadcrumb .separator {
+            color: var(--rich-gold);
+        }
+
+        /* Back to Services Link */
+        .back-to-services {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--deep-emerald);
+            font-weight: 500;
+            margin-bottom: 30px;
+            transition: gap 0.3s ease;
+        }
+
+        .back-to-services:hover {
+            gap: 15px;
+            color: var(--rich-gold);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .service-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .service-overview {
+                flex-direction: column;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                flex-direction: column;
+                background-color: #ffffff;
+                padding: 30px;
+                box-shadow: var(--shadow-hover);
+                transition: left 0.3s ease;
+                gap: 20px;
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                gap: 15px;
+            }
+            
+            .header-buttons {
+                flex-direction: column;
+                width: 100%;
+                gap: 10px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .service-hero {
+                padding: 150px 0 80px;
+            }
+            
+            .service-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .service-content {
+                padding: 70px 0;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">WH</div>
+                <div class="logo-text">
+                    <h1>Western Heights Inc.</h1>
+                    <p>Elevating Innovation</p>
+                </div>
+            </div>
+            
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li class="active"><a href="index.html#services">Services</a></li>
+                    <li><a href="index.html#solutions">Solutions</a></li>
+                    <li><a href="index.html#careers">Careers</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="index.html#support">Support</a></li>
+                </ul>
+                
+                <div class="header-buttons">
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="signup.html" class="btn btn-outline">Sign Up</a>
+                    <a href="index.html#quote" class="btn btn-primary">Get a Quote</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="separator">/</li>
+                <li><a href="index.html#services">Services</a></li>
+                <li class="separator">/</li>
+                <li>Network Systems</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Service Hero Section -->
+    <section class="service-hero">
+        <div class="container service-hero-content">
+            <div class="service-icon-large">
+                <i class="fas fa-network-wired"></i>
+            </div>
+            <h1>Network Systems Services</h1>
+            <p>Design, implement, and manage robust network infrastructure for seamless connectivity, security, and performance across your African operations.</p>
+            <a href="#contact" class="btn btn-primary">Get Network Consultation</a>
+        </div>
+    </section>
+
+    <!-- Service Content -->
+    <section class="service-content">
+        <div class="container">
+            <a href="index.html#services" class="back-to-services">
+                <i class="fas fa-arrow-left"></i> Back to All Services
+            </a>
+
+            <div class="service-overview">
+                <div class="service-overview-text">
+                    <h2>Robust Network Infrastructure Solutions</h2>
+                    <p>Our network systems services provide comprehensive solutions for designing, implementing, and managing secure, high-performance network infrastructure tailored for African businesses. We understand the unique connectivity challenges in the region and deliver solutions that ensure reliability and performance.</p>
+                    <p>From enterprise-wide area networks to local office connectivity, our certified network engineers design and deploy infrastructure that supports your business growth while maintaining security and efficiency.</p>
+                    <p>We specialize in both wired and wireless solutions, ensuring your organization stays connected and productive in today's digital landscape.</p>
+                </div>
+                <div class="service-overview-image">
+                    <div class="placeholder-image">
+                        <i class="fas fa-wifi"></i>
+                        <span style="margin-left: 10px;">Network Infrastructure</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <h2>Our Network Solutions</h2>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Network Design & Architecture</h3>
+                    <p>Custom network design and architecture planning for optimal performance, scalability, and security across your organization.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Network Security</h3>
+                    <p>Comprehensive network security solutions including firewalls, intrusion detection, VPNs, and secure remote access.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3>Wireless Solutions</h3>
+                    <p>Enterprise-grade wireless networking with seamless coverage, high-density support, and advanced security features.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-phone-volume"></i>
+                    </div>
+                    <h3>VoIP & Unified Communications</h3>
+                    <p>Voice over IP systems and unified communications platforms that integrate voice, video, and messaging.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Network Monitoring & Management</h3>
+                    <p>24/7 network monitoring, performance optimization, and proactive management to ensure maximum uptime.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <h3>SD-WAN Solutions</h3>
+                    <p>Software-defined wide area network solutions for improved performance, reliability, and cost-efficiency.</p>
+                </div>
+            </div>
+
+            <div class="service-cta">
+                <h2>Need Reliable Network Infrastructure?</h2>
+                <p>Our network specialists are ready to design and implement a robust network solution that keeps your business connected and secure.</p>
+                <a href="index.html#contact" class="btn btn-primary">Schedule Network Assessment</a>
+                <a href="#contact" class="btn btn-secondary" style="margin-left: 20px;">Request Proposal</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <div class="logo-icon">WH</div>
+                        <div class="logo-text">
+                            <h1>Western Heights Inc.</h1>
+                            <p>Elevating Innovation</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 20px;">Transforming African businesses with innovative technology solutions since 2010.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="cloud-computing.html">Cloud Computing</a></li>
+                        <li><a href="network-systems.html">Network Systems</a></li>
+                        <li><a href="digital-transformation.html">Digital Transformation</a></li>
+                        <li><a href="managed-it.html">Managed IT Services</a></li>
+                        <li><a href="software-development.html">Software Development</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-help">
+                    <h4>Help Center</h4>
+                    <ul>
+                        <li><a href="login.html">Client Login</a></li>
+                        <li><a href="signup.html">Partner Signup</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#support">Support Portal</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Subscribe to our newsletter for the latest in African tech innovation.</p>
+                    <div style="margin-top: 20px;">
+                        <input type="email" class="form-control" placeholder="Your email address" style="margin-bottom: 10px;">
+                        <button class="btn btn-primary" style="width: 100%;">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Western Heights Inc. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #d4af37;"></i> for African innovation</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+    </script>
+</body>
+</html>

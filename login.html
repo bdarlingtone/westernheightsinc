@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Western Heights Inc.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-emerald: #0c5c46;
+            --rich-gold: #d4af37;
+            --warm-yellow: #f8c537;
+            --soft-white: #f8f9fa;
+            --light-gray: #e9ecef;
+            --medium-gray: #6c757d;
+            --dark-gray: #343a40;
+            --gradient-green: linear-gradient(135deg, #0c5c46 0%, #1a7d5e 100%);
+            --gradient-gold: linear-gradient(135deg, #d4af37 0%, #f8c537 100%);
+            --shadow-subtle: 0 4px 6px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f7fa;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            min-height: 700px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .auth-left {
+            flex: 1;
+            background: var(--gradient-green);
+            padding: 60px;
+            color: var(--soft-white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-left::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80') center/cover;
+            opacity: 0.1;
+        }
+
+        .auth-right {
+            flex: 1;
+            background-color: #ffffff;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-gold);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--deep-emerald);
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        .logo-text h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            color: var(--deep-emerald);
+            margin: 0;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+            margin: 0;
+        }
+
+        .welcome-content {
+            max-width: 500px;
+            margin: 15px auto;
+        }
+
+        .welcome-content h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2rem;
+            color: var(--soft-white);
+            margin-bottom: 20px;
+        }
+
+        .welcome-content p {
+            font-size: 1.1rem;
+            color: var(--light-gray);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .features {
+            margin-top: 40px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .feature i {
+            font-size: 1.2rem;
+            color: var(--rich-gold);
+        }
+
+        .auth-form-container h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            color: var(--deep-emerald);
+            margin-bottom: 10px;
+        }
+
+        .auth-subtitle {
+            color: var(--medium-gray);
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--medium-gray);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--deep-emerald);
+            box-shadow: 0 0 0 3px rgba(12, 92, 70, 0.1);
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .remember-me input {
+            width: 18px;
+            height: 18px;
+        }
+
+        .remember-me label {
+            font-size: 0.95rem;
+            color: var(--medium-gray);
+        }
+
+        .forgot-password {
+            color: var(--deep-emerald);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password:hover {
+            color: var(--rich-gold);
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient-gold);
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-google {
+            background-color: #ffffff;
+            color: #333;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-google:hover {
+            background-color: #f8f9fa;
+            border-color: #ccc;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            color: var(--medium-gray);
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background-color: #e9ecef;
+        }
+
+        .divider span {
+            padding: 0 15px;
+            font-size: 0.9rem;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--medium-gray);
+        }
+
+        .auth-footer a {
+            color: var(--deep-emerald);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .auth-footer a:hover {
+            color: var(--rich-gold);
+        }
+
+        .back-home {
+            position: center;
+            top: 30px;
+            left: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--light-gray);
+            transition: color 0.3s ease;
+            z-index: 10;
+        }
+
+        .back-home:hover {
+            color: var(--rich-gold);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .auth-container {
+                flex-direction: column;
+                min-height: auto;
+            }
+            
+            .auth-left, .auth-right {
+                padding: 40px;
+            }
+            
+            .auth-left {
+                padding-bottom: 60px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            body {
+                padding: 10px;
+            }
+            
+            .auth-left, .auth-right {
+                padding: 30px 20px;
+            }
+            
+            .welcome-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .auth-form-container h2 {
+                font-size: 1.8rem;
+            }
+            
+            .form-options {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <!-- Left Panel: Welcome Message -->
+        <div class="auth-left">
+            <a href="index.html" class="back-home">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            
+            <div class="welcome-content">
+                <h2>Welcome Back</h2>
+                <p>Access your Western Heights Inc. account to manage your services, get support, and explore exclusive resources for our partners and clients.</p>
+                
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Enterprise-grade security and encryption</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-headset"></i>
+                        <span>24/7 customer support access</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Monitor your services and analytics</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>Manage invoices and payments</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Panel: Login Form -->
+        <div class="auth-right">
+            <div class="logo">
+                <div class="logo-icon">WH</div>
+                <div class="logo-text">
+                    <h1>Western Heights Inc.</h1>
+                    <p>Elevating Innovation</p>
+                </div>
+            </div>
+            
+            <div class="auth-form-container">
+                <h2>Login to Your Account</h2>
+                <p class="auth-subtitle">Enter your credentials to access your dashboard</p>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="loginEmail" class="form-control" placeholder="your.email@example.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="rememberMe">
+                            <label for="rememberMe">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                    
+                    <div class="divider">
+                        <span>Or continue with</span>
+                    </div>
+                    
+                    <button type="button" class="btn btn-google">
+                        <i class="fab fa-google"></i> Sign in with Google
+                    </button>
+                    
+                    <div class="auth-footer">
+                        <p>Don't have an account? <a href="signup.html">Create an account</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Form submission handling
+        const loginForm = document.getElementById('loginForm');
+        
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+            
+            // Basic validation
+            if (!email || !password) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // In a real application, you would send this data to your authentication server
+            // For demo purposes, we'll simulate a successful login
+            alert(`Login successful! Welcome back, ${email}. Remember me: ${rememberMe ? 'Yes' : 'No'}`);
+            
+            // Redirect to dashboard or home page
+            // window.location.href = 'dashboard.html';
+            
+            // For now, just reset the form
+            loginForm.reset();
+        });
+        
+        // Forgot password link
+        document.querySelector('.forgot-password').addEventListener('click', (e) => {
+            e.preventDefault();
+            const email = prompt('Please enter your email address to reset your password:');
+            if (email) {
+                alert(`Password reset instructions have been sent to ${email}. Please check your inbox.`);
+            }
+        });
+        
+        // Google login button
+        document.querySelector('.btn-google').addEventListener('click', () => {
+            alert('Google authentication would be implemented here. For demo, please use the form above.');
+        });
+    </script>
+</body>
+</html>
